@@ -14,19 +14,19 @@ public class GenericRepository<T,I> {
 
     private final Class<T> entityClass;
 
-    public List<T> findRequest(String jpql,ParameterQuery parameterQuery){
+    protected List<T> findRequest(String jpql,ParameterQuery parameterQuery){
         try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit")){
             return findRequest(jpql,emf,parameterQuery);
         }
     }
 
-    public List<T> findRequest(String jpql){
+    protected List<T> findRequest(String jpql){
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit")) {
             return findRequest(jpql, emf, typedQuery -> {});
         }
     }
 
-    public List<T> findRequest(String jpql,EntityManagerFactory emf,ParameterQuery parameterQuery)throws RuntimeException{
+    protected List<T> findRequest(String jpql,EntityManagerFactory emf,ParameterQuery parameterQuery)throws RuntimeException{
 
         // 1. Obtenir l'EntityManager
         EntityManager em = emf.createEntityManager();
@@ -53,39 +53,50 @@ public class GenericRepository<T,I> {
         return models;
     }
 
+    protected List<T> findRequest(String jpql,EntityManager em)throws RuntimeException{
+        List<T> models=null;
+        try {
+
+            // 3. Écrire une requête JPQL
+            TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
+            //query.setParameter("email", "example@example.com");
+
+            // 4. Exécuter la requête
+            models = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return models;
+    }
+
     // Méthode pour trouver une entité par son ID
-    public Optional<T> findById(I id) {
+    protected Optional<T> findById(I id) {
         // Créer l'EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
-
-        T entity = null;
         try {
             // Rechercher l'entité par son ID
-            entity = em.find(entityClass, id);
+            return findById(id,em);
         } finally {
             em.close();
             emf.close();
         }
+    }
 
+    protected Optional<T> findById(I id,EntityManager em) {
+        T entity = null;
+        entity = em.find(entityClass, id);
         // Retourner l'entité dans un Optional
         return Optional.ofNullable(entity);
     }
 
-    public Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
-        // 2. Commencer une transaction
-        em.getTransaction().begin();
-
-        // 3. Écrire une requête JPQL
+    protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
         TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
         parameterQuery.setParameter(query);
-        //query.setParameter("email", "example@example.com");
-
-        // 4. Exécuter la requête
         return Optional.ofNullable(query.getSingleResult());
     }
 
-    public Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {
+    protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();

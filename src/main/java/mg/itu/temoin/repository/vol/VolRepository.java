@@ -1,0 +1,37 @@
+package mg.itu.temoin.repository.vol;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import lombok.Getter;
+import mg.itu.prom16.winter.ModelAndView;
+import mg.itu.temoin.dto.VolDTO;
+import mg.itu.temoin.entity.vol.Vol;
+import mg.itu.temoin.repository.avion.AvionRepository;
+import mg.itu.temoin.repository.generic.GenericRepository;
+
+@Getter
+public class VolRepository extends GenericRepository<Vol,String> {
+    public VolRepository() {
+        super(Vol.class);
+    }
+
+    private final VilleRepository villeRepository=new VilleRepository();
+
+    private final AvionRepository avionRepository=new AvionRepository();
+
+    public String save(VolDTO volDTO){
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit"); EntityManager em = emf.createEntityManager();) {
+            Vol vol = volDTO.convertIntoDto(villeRepository.findVilleById(volDTO.getIdVille(), em), avionRepository.findAvionById(volDTO.getIdAvion(), em));
+            this.save(vol, em);
+        }
+        return "redirect:/Temoin/vol/form";
+    }
+
+    public ModelAndView setForm(ModelAndView modelAndView){
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit"); EntityManager em = emf.createEntityManager();) {
+            return modelAndView.addObject("villes",villeRepository.findAll(em))
+                    .addObject("avions",avionRepository.findAll(em));
+        }
+    }
+}
