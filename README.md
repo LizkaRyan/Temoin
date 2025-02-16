@@ -1,2 +1,2 @@
 # Temoin
- Ticketing management application
+ Ticketing management application using WinterFramework
