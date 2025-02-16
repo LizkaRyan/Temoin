@@ -162,6 +162,8 @@
     <a href="#" class="logo">AirVoyage</a>
     <div class="nav-links">
         <a href="/Temoin">Accueil</a>
+        <a href="#">Insertion vol</a>
+        <a href="#">Liste Vol</a>
         <a href="#">Réservation</a>
         <a href="#">Annulation réservation</a>
         <a href="#">Mes réservations</a>

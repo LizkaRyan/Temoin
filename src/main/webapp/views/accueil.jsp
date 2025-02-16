@@ -1,10 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirVoyage - Réservez vos billets d'avion</title>
     <style>
         * {
             margin: 0;
@@ -138,17 +132,6 @@
             }
         }
     </style>
-</head>
-<body>
-<nav>
-    <a href="#" class="logo">AirVoyage</a>
-    <div class="nav-links">
-        <a href="/Temoin/">Accueil</a>
-        <a href="#">Réservation</a>
-        <a href="#">Annulation réservation</a>
-    </div>
-</nav>
-
 <header>
     <div class="hero-text">
         <h1>Voyagez vers vos rêves</h1>
@@ -174,5 +157,3 @@
         </div>
     </div>
 </section>
-</body>
-</html>

@@ -13,15 +13,20 @@ import mg.itu.temoin.repository.personnel.UtilisateurRepository;
 @Controller(mapping = "/utilisateur")
 public class UtilisateurController {
 
+    public Session session;
     private final UtilisateurRepository utilisateurRepository=new UtilisateurRepository();
+
+    public UtilisateurController(Session session){
+        this.session=session;
+    }
 
     @Get("/login")
     public ModelAndView index(){
-        return new Dispatcher("utilisateur/index");
+        return new Dispatcher("utilisateur/index",session);
     }
 
     @Post("/login")
-    public String login(Session session, @Param(name = "utilisateur")LoginDTO loginDTO){
-        return utilisateurRepository.login(session,loginDTO);
+    public String login(@Param(name = "utilisateur")LoginDTO loginDTO){
+        return utilisateurRepository.login(this.session,loginDTO);
     }
 }
