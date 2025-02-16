@@ -13,7 +13,7 @@
         </init-param>
         <init-param>
             <param-name>views.prefix</param-name>
-            <param-value>views</param-value>
+            <param-value>/views</param-value>
         </init-param>
         <init-param>
             <param-name>views.suffix</param-name>

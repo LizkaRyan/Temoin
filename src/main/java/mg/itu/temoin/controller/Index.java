@@ -12,6 +12,6 @@ public class Index {
 
     @Get
     public ModelAndView index(){
-        return new ModelAndView("accueil").addObject("modele", modeleRepository.findById("MDL001").orElse(null));
+        return new ModelAndView("accueil");
     }
 }

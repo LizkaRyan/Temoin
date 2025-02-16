@@ -72,6 +72,33 @@ public class GenericRepository<T,I> {
         return Optional.ofNullable(entity);
     }
 
+    public Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
+        // 2. Commencer une transaction
+        em.getTransaction().begin();
+
+        // 3. Écrire une requête JPQL
+        TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
+        parameterQuery.setParameter(query);
+        //query.setParameter("email", "example@example.com");
+
+        // 4. Exécuter la requête
+        return Optional.ofNullable(query.getSingleResult());
+    }
+
+    public Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            // Rechercher l'entité par son ID
+            return findOnlyOne(jpql,parameterQuery,em);
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
     // Méthode pour insérer une entité
     public void save(T entity) {
         // Créer l'EntityManager
