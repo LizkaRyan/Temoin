@@ -5,6 +5,8 @@
              version="3.0">
     <persistence-unit name="my-persistence-unit">
         <class>mg.itu.temoin.entity.avion.Modele</class> <!-- Ajoutez vos entités ici -->
+        <class>mg.itu.temoin.entity.personnel.Utilisateur</class>
+        <class>mg.itu.temoin.entity.personnel.Role</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />

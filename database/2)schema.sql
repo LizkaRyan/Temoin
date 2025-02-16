@@ -22,15 +22,14 @@ CREATE TABLE type_siege
     UNIQUE (type_siege)
 );
 
-CREATE TABLE admin
+CREATE TABLE role
 (
-    id_admin VARCHAR(50) default 'ADM00' || nextval('seq_admin'),
-    email    VARCHAR(50)  NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    pseudo   VARCHAR(50)  NOT NULL,
-    PRIMARY KEY (id_admin),
-    UNIQUE (email)
+    id_role VARCHAR(50) default 'ROL00' || nextval('seq_role'),
+    role    VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_role),
+    UNIQUE (role)
 );
+
 
 CREATE TABLE utilisateur
 (
@@ -38,6 +37,7 @@ CREATE TABLE utilisateur
     pseudo         VARCHAR(50)  NOT NULL,
     email          VARCHAR(50)  NOT NULL,
     password       VARCHAR(255) NOT NULL,
+    id_role        VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_utilisateur),
     UNIQUE (email)
 );
