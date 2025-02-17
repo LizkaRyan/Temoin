@@ -10,6 +10,8 @@ import mg.itu.temoin.entity.vol.Vol;
 import mg.itu.temoin.repository.avion.AvionRepository;
 import mg.itu.temoin.repository.generic.GenericRepository;
 
+import java.util.List;
+
 @Getter
 public class VolRepository extends GenericRepository<Vol,String> {
     public VolRepository() {
@@ -47,5 +49,9 @@ public class VolRepository extends GenericRepository<Vol,String> {
             return modelAndView.addObject("villes",villeRepository.findAll(em))
                     .addObject("avions",avionRepository.findAll(em));
         }
+    }
+
+    public List<Vol> findAll(){
+        return this.findRequest("select v from Vol v");
     }
 }

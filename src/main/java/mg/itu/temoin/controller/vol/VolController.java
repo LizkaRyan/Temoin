@@ -26,6 +26,11 @@ public class VolController {
         return volRepository.setForm(new Dispatcher("vol/form",session));
     }
 
+    @Get
+    public ModelAndView list(){
+        return new Dispatcher("vol/index",session).addObject("vols",volRepository.findAll());
+    }
+
     @Post
     public String insert(@Param(name = "vol") VolDTO volDTO){
         return volRepository.save(volDTO);
