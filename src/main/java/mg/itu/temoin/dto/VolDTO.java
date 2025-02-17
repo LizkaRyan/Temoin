@@ -2,7 +2,7 @@ package mg.itu.temoin.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import mg.itu.prom16.winter.validation.annotation.RangeInt;
+import mg.itu.prom16.winter.validation.annotation.RangeDouble;
 import mg.itu.temoin.entity.avion.Avion;
 import mg.itu.temoin.entity.vol.Ville;
 import mg.itu.temoin.entity.vol.Vol;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 public class VolDTO {
     private LocalDateTime dateVol;
-    @RangeInt(min = 0, field = "prixVol")
+    @RangeDouble(min = 0, field = "prixVol")
     private double prixVol;
     private String idVille;
     private String idAvion;

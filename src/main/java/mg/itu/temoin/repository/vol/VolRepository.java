@@ -21,9 +21,23 @@ public class VolRepository extends GenericRepository<Vol,String> {
     private final AvionRepository avionRepository=new AvionRepository();
 
     public String save(VolDTO volDTO){
-        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit"); EntityManager em = emf.createEntityManager();) {
+        EntityManager em=null;
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit")) {
+            em = emf.createEntityManager();
+            // Commencer la transaction
+            em.getTransaction().begin();
             Vol vol = volDTO.convertIntoDto(villeRepository.findVilleById(volDTO.getIdVille(), em), avionRepository.findAvionById(volDTO.getIdAvion(), em));
             this.save(vol, em);
+            em.getTransaction().commit();
+        }
+        catch (Exception ex){
+            if(em!=null){
+                em.getTransaction().rollback();
+            }
+        }
+        finally {
+            assert em != null;
+            em.close();
         }
         return "redirect:/Temoin/vol/form";
     }

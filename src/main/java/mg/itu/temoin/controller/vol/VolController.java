@@ -8,7 +8,6 @@ import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.type.Controller;
 import mg.itu.temoin.controller.Dispatcher;
 import mg.itu.temoin.dto.VolDTO;
-import mg.itu.temoin.repository.avion.AvionRepository;
 import mg.itu.temoin.repository.vol.VolRepository;
 
 @Controller(mapping = "/vol")

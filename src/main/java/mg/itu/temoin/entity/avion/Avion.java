@@ -15,6 +15,8 @@ public class Avion {
     @Column(insertable = false,name = "id_avion")
     private String idAvion;
 
+    private String avion;
+
     @Column(name = "date_fabrication")
     private LocalDate dateFabrication;
 

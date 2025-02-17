@@ -37,7 +37,7 @@ CREATE TABLE utilisateur
     pseudo         VARCHAR(50)  NOT NULL,
     email          VARCHAR(50)  NOT NULL,
     password       VARCHAR(255) NOT NULL,
-    id_role        VARCHAR(50) NOT NULL,
+    id_role        VARCHAR(50)  NOT NULL,
     PRIMARY KEY (id_utilisateur),
     UNIQUE (email)
 );
@@ -45,9 +45,11 @@ CREATE TABLE utilisateur
 CREATE TABLE avion
 (
     id_avion         VARCHAR(50) default 'AVN00' || nextval('seq_avion'),
+    avion            VARCHAR(50) NOT NULL,
     date_fabrication DATE        NOT NULL,
     id_modele        VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_avion),
+    UNIQUE (avion),
     FOREIGN KEY (id_modele) REFERENCES modele (id_modele)
 );
 

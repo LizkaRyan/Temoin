@@ -13,7 +13,7 @@
             <form>
                 <div class="input-group">
                     <label>Date du vol</label>
-                    <input name="vol.dateVol" type="date" required>
+                    <input name="vol.dateVol" type="datetime-local" required>
                 </div>
                 <div class="input-group">
                     <label for="prix">Prix du vol</label>
@@ -22,14 +22,14 @@
                 <div class="input-group">
                     <select name="vol.idVille">
                         <% for (Ville ville:villes){%>
-                        <option name="<%= ville.getIdVille() %>"><%= ville.getVille() %></option>
+                        <option value="<%= ville.getIdVille() %>"><%= ville.getVille() %></option>
                         <%}%>
                     </select>
                 </div>
                 <div class="input-group">
                     <select name="vol.idAvion">
                         <% for (Avion avion:avions){%>
-                        <option name="<%= avion.getIdAvion() %>"><%= avion.getDateFabrication() %></option>
+                        <option value="<%= avion.getIdAvion() %>"><%= avion.getAvion() %></option>
                         <%}%>
                     </select>
                 </div>

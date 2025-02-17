@@ -9,8 +9,8 @@ insert into modele(modele) values('Airbus A380'),
                                  ('Airbus A350'),
                                  ('Boeing 787 Dreamliner');
 
-insert into avion(date_fabrication,id_modele) values('2025-02-01','MDL001'),
-                                                    ('2024-01-01','MDL002');
+insert into avion(date_fabrication,avion,id_modele) values('2025-02-01','Yuero','MDL001'),
+                                                    ('2024-01-01','Flight','MDL002');
 
 insert into ville(ville) values('Paris'),
                                ('Madrid'),
