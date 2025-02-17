@@ -19,6 +19,10 @@
             <param-name>views.suffix</param-name>
             <param-value>.jsp</param-value>
         </init-param>
+        <init-param>
+            <param-name>static.file.directory</param-name>
+            <param-value>static</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>

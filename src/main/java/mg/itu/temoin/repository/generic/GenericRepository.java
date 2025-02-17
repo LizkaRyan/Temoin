@@ -15,40 +15,30 @@ public class GenericRepository<T,I> {
     private final Class<T> entityClass;
 
     protected List<T> findRequest(String jpql,ParameterQuery parameterQuery){
-        try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit")){
-            return findRequest(jpql,emf,parameterQuery);
+        try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");EntityManager em = emf.createEntityManager()){
+            return findRequest(jpql,em,parameterQuery);
         }
     }
 
     protected List<T> findRequest(String jpql){
-        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit")) {
-            return findRequest(jpql, emf, typedQuery -> {});
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit"); EntityManager em=emf.createEntityManager()) {
+            return findRequest(jpql, em, typedQuery -> {});
         }
     }
 
-    protected List<T> findRequest(String jpql,EntityManagerFactory emf,ParameterQuery parameterQuery)throws RuntimeException{
-
-        // 1. Obtenir l'EntityManager
-        EntityManager em = emf.createEntityManager();
+    protected List<T> findRequest(String jpql,EntityManager em,ParameterQuery parameterQuery)throws RuntimeException{
 
         List<T> models=null;
         try {
-            // 2. Commencer une transaction
-            em.getTransaction().begin();
-
-            // 3. Écrire une requête JPQL
+            // 1. Écrire une requête JPQL
             TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
             parameterQuery.setParameter(query);
             //query.setParameter("email", "example@example.com");
 
-            // 4. Exécuter la requête
+            // 2. Exécuter la requête
             models = query.getResultList();
         } catch (Exception e) {
             throw e;
-        } finally {
-            // 8. Fermer l'EntityManager
-            em.close();
-            emf.close();
         }
         return models;
     }

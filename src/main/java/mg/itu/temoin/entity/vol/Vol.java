@@ -26,7 +26,7 @@ public class Vol {
     @JoinColumn(name = "destination",referencedColumnName = "id_ville")
     private Ville destination;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_avion")
     private Avion avion;
 }
