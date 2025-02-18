@@ -8,6 +8,7 @@ import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.type.Controller;
 import mg.itu.temoin.controller.Dispatcher;
 import mg.itu.temoin.dto.VolDTO;
+import mg.itu.temoin.dto.VolMultiCritere;
 import mg.itu.temoin.repository.vol.VolRepository;
 
 @Controller(mapping = "/vol")
@@ -27,8 +28,12 @@ public class VolController {
     }
 
     @Get
-    public ModelAndView list(){
-        return new Dispatcher("vol/index",session).addObject("vols",volRepository.findAll());
+    public ModelAndView list(@Param(name = "vol")VolMultiCritere vol){
+        return new Dispatcher("vol/index",session).addObject("vols",volRepository.findByCriteria(vol))
+                .addObject("villes",volRepository.getVilleRepository().findAll())
+                .addObject("dateMin",vol.getDateTimeMin())
+                .addObject("dateMax",vol.getDateTimeMax())
+                .addObject("idVille",vol.getIdVille());
     }
 
     @Post

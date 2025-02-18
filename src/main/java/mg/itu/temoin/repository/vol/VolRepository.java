@@ -6,10 +6,12 @@ import jakarta.persistence.Persistence;
 import lombok.Getter;
 import mg.itu.prom16.winter.ModelAndView;
 import mg.itu.temoin.dto.VolDTO;
+import mg.itu.temoin.dto.VolMultiCritere;
 import mg.itu.temoin.entity.vol.Vol;
 import mg.itu.temoin.repository.avion.AvionRepository;
 import mg.itu.temoin.repository.generic.GenericRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -53,5 +55,22 @@ public class VolRepository extends GenericRepository<Vol,String> {
 
     public List<Vol> findAll(){
         return this.findRequest("select v from Vol v");
+    }
+
+    public List<Vol> findByCriteria(VolMultiCritere critere){
+        if(critere.getDateTimeMax()==null){
+            critere.setDateTimeMax(LocalDateTime.of(2077,1,1,0,0));
+        }
+        if(critere.getDateTimeMin()==null){
+            critere.setDateTimeMin(LocalDateTime.of(1980,1,1,0,0));
+        }
+        if(critere.getIdVille()==null){
+            critere.setIdVille("Tous");
+        }
+        return this.findRequest("select v from Vol v where :dateMin <= v.dateVol and v.dateVol <= :dateMax and (v.destination.idVille = :idVille or :idVille = 'Tous')",typedQuery -> {
+            typedQuery.setParameter("dateMin",critere.getDateTimeMin());
+            typedQuery.setParameter("dateMax",critere.getDateTimeMax());
+            typedQuery.setParameter("idVille",critere.getIdVille());
+        });
     }
 }

@@ -22,7 +22,7 @@ public class Vol {
     @Column(name = "prix_vol")
     private double prixVol;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "destination",referencedColumnName = "id_ville")
     private Ville destination;
 
