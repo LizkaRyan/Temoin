@@ -7,10 +7,6 @@ import mg.itu.temoin.repository.generic.GenericRepository;
 import java.util.List;
 
 public class VilleRepository extends GenericRepository<Ville,String> {
-    public VilleRepository() {
-        super(Ville.class);
-    }
-
     public List<Ville> findAll(){
         return this.findRequest("select v from Ville v");
     }

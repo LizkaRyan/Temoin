@@ -16,10 +16,6 @@ import java.util.List;
 
 @Getter
 public class VolRepository extends GenericRepository<Vol,String> {
-    public VolRepository() {
-        super(Vol.class);
-    }
-
     private final VilleRepository villeRepository=new VilleRepository();
 
     private final AvionRepository avionRepository=new AvionRepository();

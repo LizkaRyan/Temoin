@@ -7,10 +7,6 @@ import mg.itu.temoin.repository.generic.GenericRepository;
 import java.util.List;
 
 public class AvionRepository extends GenericRepository<Avion,String> {
-    public AvionRepository() {
-        super(Avion.class);
-    }
-
     public List<Avion> findAll(){
         return this.findRequest("select a from Avion a");
     }

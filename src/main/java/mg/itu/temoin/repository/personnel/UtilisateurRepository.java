@@ -6,10 +6,6 @@ import mg.itu.temoin.entity.personnel.Utilisateur;
 import mg.itu.temoin.repository.generic.GenericRepository;
 
 public class UtilisateurRepository extends GenericRepository<Utilisateur,String> {
-    public UtilisateurRepository(){
-        super(Utilisateur.class);
-    }
-
     public Utilisateur findByEmail(String email){
         return this.findOnlyOne("select u from Utilisateur u where u.email = :email",typedQuery -> {
             typedQuery.setParameter("email",email);
