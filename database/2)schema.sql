@@ -71,6 +71,7 @@ CREATE TABLE reservation
     id_reservation   VARCHAR(50) default 'RSV00' || nextval('seq_reservation'),
     date_reservation TIMESTAMP      NOT NULL,
     prix_reservation NUMERIC(15, 2) NOT NULL,
+    src_photo        VARCHAR(255),
     id_type_siege    VARCHAR(50)    NOT NULL,
     id_utilisateur   VARCHAR(50)    NOT NULL,
     id_vol           VARCHAR(50)    NOT NULL,

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "type_siege")
 public class TypeSiege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,4 +16,7 @@ public class TypeSiege {
 
     @Column(name = "type_siege")
     private String typeSiege;
+
+    @Column(name = "prix_siege")
+    private double prixSiege;
 }

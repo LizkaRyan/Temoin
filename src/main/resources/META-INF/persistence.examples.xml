@@ -12,6 +12,7 @@
         <class>mg.itu.temoin.entity.personnel.Role</class>
         <class>mg.itu.temoin.entity.vol.Vol</class>
         <class>mg.itu.temoin.entity.vol.Ville</class>
+        <class>mg.itu.temoin.entity.vol.Reservation</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />

@@ -69,4 +69,9 @@ public class VolRepository extends GenericRepository<Vol,String> {
             typedQuery.setParameter("idVille",critere.getIdVille());
         });
     }
+
+
+    public Vol findVolById(String idVol,EntityManager em){
+        return super.findById(idVol,em).orElseThrow(()->new RuntimeException("Id Vol non reconnue"));
+    }
 }

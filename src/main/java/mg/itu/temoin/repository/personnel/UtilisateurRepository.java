@@ -1,5 +1,6 @@
 package mg.itu.temoin.repository.personnel;
 
+import jakarta.persistence.EntityManager;
 import mg.itu.prom16.winter.Session;
 import mg.itu.temoin.dto.LoginDTO;
 import mg.itu.temoin.entity.personnel.Utilisateur;
@@ -19,5 +20,9 @@ public class UtilisateurRepository extends GenericRepository<Utilisateur,String>
             return "redirect:/Temoin";
         }
         return "redirect:/Temoin/utilisateur/login";
+    }
+
+    public Utilisateur findUtilisiateurById(String idUtilisateur, EntityManager em) {
+        return super.findById(idUtilisateur,em).orElseThrow(()->new RuntimeException("idUtilisateur non reconnue"));
     }
 }

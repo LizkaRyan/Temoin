@@ -6,6 +6,7 @@ import mg.itu.prom16.winter.annotation.method.Get;
 import mg.itu.prom16.winter.annotation.method.Post;
 import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.type.Controller;
+import mg.itu.prom16.winter.validation.generic.annotation.IfNotValidated;
 import mg.itu.temoin.controller.Dispatcher;
 import mg.itu.temoin.dto.VolDTO;
 import mg.itu.temoin.dto.VolMultiCritere;
@@ -37,6 +38,7 @@ public class VolController {
     }
 
     @Post
+    @IfNotValidated(url = "vol/form")
     public String insert(@Param(name = "vol") VolDTO volDTO){
         return volRepository.save(volDTO);
     }
