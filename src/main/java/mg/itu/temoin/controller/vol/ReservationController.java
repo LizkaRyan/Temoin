@@ -7,13 +7,18 @@ import mg.itu.prom16.winter.annotation.method.Post;
 import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.parameter.WinterFile;
 import mg.itu.prom16.winter.annotation.type.Controller;
+import mg.itu.prom16.winter.authentication.Authenticate;
+import mg.itu.prom16.winter.validation.generic.annotation.IfNotValidated;
+import mg.itu.temoin.authentication.ConnectedAuthentication;
 import mg.itu.temoin.controller.Dispatcher;
 import mg.itu.temoin.dto.ReservationDTO;
 import mg.itu.temoin.repository.vol.ReservationRepository;
 
 import javax.servlet.http.Part;
+import java.util.Map;
 
 @Controller(mapping = "/reservation")
+@Authenticate(ConnectedAuthentication.class)
 public class ReservationController {
 
     Session session;
@@ -30,7 +35,7 @@ public class ReservationController {
     }
 
     @Post
-    public String insert(@Param(name = "reservation")ReservationDTO reservation,@WinterFile(name = "passeport") Part photo) throws Exception {
+    public String insert(Map<String,Object> map, @Param(name = "reservation")ReservationDTO reservation, @WinterFile(name = "passeport") Part photo) throws Exception {
         return reservationRepository.save(reservation,session,photo);
     }
 }

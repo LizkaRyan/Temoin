@@ -3,7 +3,6 @@ package mg.itu.temoin.repository.vol;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import mg.itu.prom16.winter.Session;
 import mg.itu.temoin.dto.ReservationDTO;
@@ -54,5 +53,12 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
         prix += reservation.getTypeSiege().getPrixSiege();
         reservation.setPrixReservation(prix);
         return reservation;
+    }
+
+    public int getNumberSeatsUnavailable(String idVol,String idTypeSiege,EntityManager em){
+        return this.findRequest("select r from Reservation r where r.vol.idVol = :idVol and r.typeSiege.idTypeSiege = :idTypeSiege",em,typedQuery -> {
+            typedQuery.setParameter("idVol",idVol);
+            typedQuery.setParameter("idTypeSiege",idTypeSiege);
+        }).size();
     }
 }

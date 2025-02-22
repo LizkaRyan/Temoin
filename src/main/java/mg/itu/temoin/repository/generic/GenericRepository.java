@@ -1,10 +1,6 @@
 package mg.itu.temoin.repository.generic;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -93,7 +89,12 @@ public class GenericRepository<T,I> {
     protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
         TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
         parameterQuery.setParameter(query);
-        return Optional.ofNullable(query.getSingleResult());
+        try{
+            return Optional.ofNullable(query.getSingleResult());
+        }
+        catch (NoResultException ex){
+            return Optional.empty();
+        }
     }
 
     protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {

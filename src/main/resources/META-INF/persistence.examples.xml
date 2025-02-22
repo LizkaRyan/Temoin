@@ -8,6 +8,7 @@
         <class>mg.itu.temoin.entity.avion.Modele</class>
         <class>mg.itu.temoin.entity.avion.Avion</class>
         <class>mg.itu.temoin.entity.avion.TypeSiege</class>
+        <class>mg.itu.temoin.entity.avion.AvionSiege</class>
         <class>mg.itu.temoin.entity.personnel.Utilisateur</class>
         <class>mg.itu.temoin.entity.personnel.Role</class>
         <class>mg.itu.temoin.entity.vol.Vol</class>
