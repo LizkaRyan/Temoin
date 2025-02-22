@@ -1,18 +1,24 @@
 package mg.itu.temoin.repository.generic;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
 public class GenericRepository<T,I> {
 
     private final Class<T> entityClass;
+
+    public GenericRepository(){
+        Type superClass = getClass().getGenericSuperclass();
+        if (superClass instanceof ParameterizedType) {
+            this.entityClass = (Class<T>) ((ParameterizedType) superClass).getActualTypeArguments()[0];
+        } else {
+            throw new IllegalArgumentException("Main must be subclassed to determine T");
+        }
+    }
 
     protected List<T> findRequest(String jpql,ParameterQuery parameterQuery){
         try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");EntityManager em = emf.createEntityManager()){
@@ -83,7 +89,12 @@ public class GenericRepository<T,I> {
     protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
         TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
         parameterQuery.setParameter(query);
-        return Optional.ofNullable(query.getSingleResult());
+        try{
+            return Optional.ofNullable(query.getSingleResult());
+        }
+        catch (NoResultException ex){
+            return Optional.empty();
+        }
     }
 
     protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {

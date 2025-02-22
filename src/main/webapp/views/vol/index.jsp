@@ -1,8 +1,15 @@
 <%@ page import="mg.itu.temoin.entity.vol.Vol" %>
 <%@ page import="java.util.List" %>
+<%@ page import="mg.itu.temoin.entity.vol.Ville" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    List<Vol> vols=(List<Vol>)request.getAttribute("vols");
+    List<Vol> vols = (List<Vol>) request.getAttribute("vols");
+    List<Ville> villes = (List<Ville>) request.getAttribute("villes");
+    String idVille=(String)request.getAttribute("idVille");
+    LocalDateTime dateMin=(LocalDateTime)request.getAttribute("dateMin");
+    LocalDateTime dateMax=(LocalDateTime)request.getAttribute("dateMax");
 %>
 <style>
     .container {
@@ -30,7 +37,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     thead {
@@ -96,8 +103,37 @@
         font-size: 0.9em;
     }
 </style>
+<form action="/Temoin/vol" method="get">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Recherche multi critère</h1>
+            <form>
+                <div class="input-group">
+                    <label>Date du vol minimum</label>
+                    <input name="vol.dateTimeMin" type="datetime-local" value="<%= dateMin.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm")) %>">
+                </div>
+                <div class="input-group">
+                    <label>Date du vol maximum</label>
+                    <input name="vol.dateTimeMax" type="datetime-local" value="<%= dateMax.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm")) %>">
+                </div>
+                <div class="input-group">
+                    <select name="vol.idVille">
+                        <option value="Tous">Tous</option>
+                        <% for (Ville ville : villes) {%>
+                        <option
+                                value="<%= ville.getIdVille() %>"
+                                <% if(idVille.equals(ville.getIdVille())) {%> selected <%}%>>
+                            <%= ville.getVille() %></option>
+                        <%}%>
+                    </select>
+                </div>
+                <button type="submit" class="login-button">Inserer</button>
+            </form>
+        </div>
+    </div>
+</form>
 <div class="container mt-3">
-    <h2>Tableau de Données</h2>
+    <h2>Tableau de Vols</h2>
     <div class="table-responsive">
         <table>
             <thead>
@@ -105,16 +141,19 @@
                 <th>Date du vol</th>
                 <th>Prix du vol</th>
                 <th>Avion</th>
-                <th>Status</th>
+                <th>Destination</th>
+                <th>Réservation</th>
             </tr>
             </thead>
             <tbody>
-            <% for (Vol vol:vols) {%>
+            <% for (Vol vol : vols) {%>
             <tr>
-                <td><%= vol.getDateVol() %></td>
+                <td><%= vol.getDateVol().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm")) %></td>
                 <td><%= vol.getPrixVol() %></td>
                 <td><%= vol.getAvion().getAvion() %></td>
-                <td><span class="status completed">Terminé</span></td>
+                <td><%= vol.getDestination().getVille() %></td>
+                <td><a href="/Temoin/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
+                <!--<td><span class="status completed">Terminé</span></td>-->
                 <!--<td><span class="status pending">En attente</span></td>-->
                 <!--<td><span class="status in-progress">En cours</span></td>-->
             </tr>

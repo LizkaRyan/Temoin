@@ -18,9 +18,9 @@ public class AdminAuthentication implements Authenticator {
     public void authentificate() throws AuthenticationException {
         Utilisateur utilisateur=(Utilisateur)this.session.get("utilisateur");
         if(utilisateur==null){
-            throw new AuthenticationException("redirect:/Temoin/login");
+            throw new AuthenticationException("redirect:/Temoin/utilisateur/login");
         } else if (!utilisateur.getRole().getRole().equals("Admin")) {
-            throw new AuthenticationException("redirect:/Temoin/login");
+            throw new AuthenticationException("redirect:/Temoin/utilisateur/login");
         }
     }
 }
