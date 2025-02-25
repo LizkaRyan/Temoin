@@ -6,7 +6,7 @@ import mg.itu.temoin.entity.avion.TypeSiege;
 import mg.itu.temoin.entity.personnel.Utilisateur;
 import mg.itu.temoin.entity.vol.Reservation;
 import mg.itu.temoin.entity.vol.Vol;
-import mg.itu.temoin.validation.VolValidation;
+import mg.itu.temoin.validation.reservation.seats.SeatsValidation;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 public class ReservationDTO {
     private LocalDateTime dateReservation;
-    @VolValidation
+    @SeatsValidation
     TypeVol typeVol=new TypeVol();
 
     public Reservation turnIntoReservation(Vol vol, TypeSiege typeSiege, Utilisateur utilisateur){

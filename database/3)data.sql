@@ -23,3 +23,6 @@ insert into avion_siege(id_avion,id_type_siege,nombre) values('AVN001','TPS001',
                                                              ('AVN001','TPS002',10),
                                                              ('AVN002','TPS001',15),
                                                              ('AVN002','TPS002',15);
+
+insert into parametre_reservation(heure_avant_vol,date_changement) values(2,'2025-01-01');
+insert into parametre_annulation(heure_avant_vol,date_changement) values(1,'2025-01-01');
