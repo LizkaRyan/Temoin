@@ -13,6 +13,7 @@ import mg.itu.temoin.authentication.ConnectedAuthentication;
 import mg.itu.temoin.controller.Dispatcher;
 import mg.itu.temoin.dto.ReservationDTO;
 import mg.itu.temoin.repository.vol.ReservationRepository;
+import mg.itu.temoin.validation.reservation.ReservationValidation;
 
 import javax.servlet.http.Part;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class ReservationController {
     }
 
     @Post
-    public String insert(Map<String,Object> map, @Param(name = "reservation")ReservationDTO reservation, @WinterFile(name = "passeport") Part photo) throws Exception {
+    public String insert(@Param(name = "reservation") @ReservationValidation ReservationDTO reservation, @WinterFile(name = "passeport") Part photo) throws Exception {
         return reservationRepository.save(reservation,session,photo);
     }
 }

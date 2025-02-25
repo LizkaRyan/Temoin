@@ -14,6 +14,8 @@
         <class>mg.itu.temoin.entity.vol.Vol</class>
         <class>mg.itu.temoin.entity.vol.Ville</class>
         <class>mg.itu.temoin.entity.vol.Reservation</class>
+        <class>mg.itu.temoin.entity.vol.parametre.ParametreReservation</class>
+        <class>mg.itu.temoin.entity.vol.parametre.ParametreAnnulation</class>
         <properties>
             <!-- Configuration de la base de données -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />

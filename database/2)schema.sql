@@ -31,6 +31,22 @@ CREATE TABLE role
     UNIQUE (role)
 );
 
+CREATE TABLE parametre_reservation
+(
+    id_parametre_reservation VARCHAR(50) default 'PRS00' || nextval('seq_parametre_reservation'),
+    heure_avant_vol          INTEGER NOT NULL,
+    date_changement          DATE    NOT NULL,
+    PRIMARY KEY (id_parametre_reservation)
+);
+
+CREATE TABLE parametre_annulation
+(
+    id_parametre_annulation VARCHAR(50) default 'PRA00' || nextval('seq_parametre_annulation'),
+    heure_avant_vol         INTEGER NOT NULL,
+    date_changement         DATE    NOT NULL,
+    PRIMARY KEY (id_parametre_annulation)
+);
+
 CREATE TABLE avion
 (
     id_avion         VARCHAR(50) default 'AVN00' || nextval('seq_avion'),

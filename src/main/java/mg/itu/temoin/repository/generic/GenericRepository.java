@@ -97,6 +97,16 @@ public class GenericRepository<T,I> {
         }
     }
 
+    protected Optional<T> findOnlyOne(String jpql,EntityManager em) {
+        TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
+        try{
+            return Optional.ofNullable(query.getSingleResult());
+        }
+        catch (NoResultException ex){
+            return Optional.empty();
+        }
+    }
+
     protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
@@ -105,6 +115,20 @@ public class GenericRepository<T,I> {
         try {
             // Rechercher l'entité par son ID
             return findOnlyOne(jpql,parameterQuery,em);
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    protected Optional<T> findOnlyOne(String jpql) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            // Rechercher l'entité par son ID
+            return findOnlyOne(jpql,typedQuery -> {},em);
         } finally {
             em.close();
             emf.close();
