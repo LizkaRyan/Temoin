@@ -1,7 +1,7 @@
-<%@ page import="mg.itu.temoin.entity.avion.Avion" %>
+<%@ page import="mg.itu.ticketing.entity.avion.Avion" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mg.itu.temoin.entity.vol.Ville" %>
-<%@ page import="mg.itu.temoin.dto.VolDTO" %>
+<%@ page import="mg.itu.ticketing.entity.vol.Ville" %>
+<%@ page import="mg.itu.ticketing.dto.VolDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -17,7 +17,7 @@
         messages=new ArrayList<String>();
     }
 %>
-<form action="/Temoin/vol" method="post">
+<form action="/Ticketing/vol" method="post">
     <div class="login-container">
         <div class="login-box">
             <h1>Insertion vol</h1>

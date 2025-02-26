@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="mg.itu.temoin.dto.Parametre" %>
+<%@ page import="mg.itu.ticketing.dto.Parametre" %>
 <%
     Parametre parametre=(Parametre)request.getAttribute("parametre");
     List<String> messages=(List<String>)request.getAttribute("error.messages");
@@ -9,7 +9,7 @@
         messages=new ArrayList<>();
     }
 %>
-<form action="/Temoin/parametre" method="post">
+<form action="/Ticketing/parametre" method="post">
     <div class="login-container">
         <div class="login-box">
             <h1>Insertion réservation</h1>

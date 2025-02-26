@@ -1,6 +1,6 @@
-<%@ page import="mg.itu.temoin.entity.vol.Vol" %>
+<%@ page import="mg.itu.ticketing.entity.vol.Vol" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mg.itu.temoin.entity.vol.Ville" %>
+<%@ page import="mg.itu.ticketing.entity.vol.Ville" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -152,7 +152,7 @@
                 <td><%= vol.getPrixVol() %></td>
                 <td><%= vol.getAvion().getAvion() %></td>
                 <td><%= vol.getDestination().getVille() %></td>
-                <td><a href="/Temoin/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
+                <td><a href="/Ticketing/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
                 <!--<td><span class="status completed">Terminé</span></td>-->
                 <!--<td><span class="status pending">En attente</span></td>-->
                 <!--<td><span class="status in-progress">En cours</span></td>-->
