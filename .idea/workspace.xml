@@ -10,84 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0747d3b4-8916-49c3-84ce-4154f4bb0a0f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/reservation/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_9_0_95.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/1)sequence.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/2)schema.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/3)data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/LoopingImage.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/schema.lo1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/schema.loo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/authentication/AdminAuthentication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/authentication/ConnectedAuthentication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/Dispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/Index.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/personnel/UtilisateurController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/vol/ParametreController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/vol/ReservationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/controller/vol/VolController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/LoginDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/Parametre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/ReservationDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/TypeVol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/VolDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/dto/VolMultiCritere.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/avion/Avion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/avion/AvionSiege.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/avion/Modele.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/avion/TypeSiege.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/id/AvionSiegeId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/personnel/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/personnel/Utilisateur.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/vol/Reservation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/vol/Ville.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/vol/Vol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/vol/parametre/ParametreAnnulation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/entity/vol/parametre/ParametreReservation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/exception/NoSeatsAvailableException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/exception/ReservationTooLateException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/ModeleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/avion/AvionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/avion/AvionSiegeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/avion/TypeSiegeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/generic/GenericRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/generic/ParameterQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/personnel/UtilisateurRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/vol/ReservationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/vol/VilleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/vol/VolRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/vol/parametre/ParametreAnnulationRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/repository/vol/parametre/ParametreReservationRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/validation/reservation/ReservationValidation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/validation/reservation/ReservationValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/validation/reservation/seats/SeatsValidation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/temoin/validation/reservation/seats/SeatsValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.examples.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.examples.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/parametre/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/parametre/form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/reservation/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/reservation/form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/template_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/template_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/template_utilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/template_utilisateur.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/utilisateur/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/utilisateur/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/vol/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/vol/form.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/AnnulationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/exception/TooLateToCancelReservationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/AnnulationReservationRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/vol/AnnulationReservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/vol/AnnulationReservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/vol/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/vol/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/parametre/ParametreAnnulationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/parametre/ParametreAnnulationRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/reservation/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/reservation/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/vol/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/vol/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/web/WEB-INF/web.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -116,6 +62,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feat-annulation-reservation",
     "last_opened_file_path": "C:/Users/ryrab/Desktop/Ryan/Etudes/S6/Ticketing/src/main/webapp",
@@ -235,11 +182,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1740588562161</updated>
-      <workItem from="1740588563244" duration="5855000" />
+      <workItem from="1740588563244" duration="10946000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/ReservationController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

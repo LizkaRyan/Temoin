@@ -29,14 +29,15 @@ public class ReservationController {
     }
     @Get("/form")
     public ModelAndView form(@Param(name = "idVol")String idVol){
-        return new Dispatcher("reservation/forsdfsdfssdfdm",session)
+        return new Dispatcher("reservation/form",session)
                 .addObject("typeSieges",reservationRepository.getTypeSiegeRepository().findAll())
                 .addObject("idVol",idVol);
     }
 
-    @Get("/list")
-    public ModelAndView list(){
-        return new Dispatcher("reservation/index",session).addObject("reservations",reservationRepository.findReservationByIdUser(((Utilisateur)session.get("utilisateur")).getIdUtilisateur()));
+    @Get
+    public ModelAndView list(@Param(name = "message")String message){
+        return new Dispatcher("reservation/index",session).addObject("reservations",reservationRepository.findReservationByIdUser(((Utilisateur)session.get("utilisateur")).getIdUtilisateur()))
+                .addObject("message",message);
     }
 
     @Post

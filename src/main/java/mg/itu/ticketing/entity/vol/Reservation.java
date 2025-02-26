@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -45,7 +46,7 @@ public class Reservation {
     public void setPhotoSrc(Part photo) throws IOException {
         String fileName = Paths.get(photo.getSubmittedFileName()).getFileName().toString();
         // Sauvegarde du fichier
-        String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Temoin\\public\\images\\"+this.utilisateur.getIdUtilisateur()+"."+ this.typeSiege.getTypeSiege() +"." + fileName;
+        String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Temoin\\public\\images\\"+ UUID.randomUUID().toString()+"." + fileName;
         Files.copy(photo.getInputStream(), Paths.get(uploadPath));
         this.srcPhoto=uploadPath;
     }

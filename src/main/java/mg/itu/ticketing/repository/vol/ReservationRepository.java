@@ -56,6 +56,10 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
         return reservation;
     }
 
+    public Reservation findReservationById(String idReservation,EntityManager em){
+        return super.findById(idReservation,em).orElseThrow(()->new RuntimeException("Id reservation non retrouve"));
+    }
+
     public int getNumberSeatsUnavailable(String idVol,String idTypeSiege,EntityManager em){
         return this.findRequest("select r from Reservation r where r.vol.idVol = :idVol and r.typeSiege.idTypeSiege = :idTypeSiege",em,typedQuery -> {
             typedQuery.setParameter("idVol",idVol);

@@ -152,7 +152,7 @@
                 <td><%= vol.getPrixVol() %></td>
                 <td><%= vol.getAvion().getAvion() %></td>
                 <td><%= vol.getDestination().getVille() %></td>
-                <td><a href="/Temoin/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
+                <td><a href="/Ticketing/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
                 <!--<td><span class="status completed">Terminé</span></td>-->
                 <!--<td><span class="status pending">En attente</span></td>-->
                 <!--<td><span class="status in-progress">En cours</span></td>-->

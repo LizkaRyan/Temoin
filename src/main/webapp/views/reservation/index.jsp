@@ -4,6 +4,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<Reservation> reservations=(List<Reservation>)request.getAttribute("reservations");
+    String message=(String)request.getAttribute("message");
+    if(message==null){
+        message="";
+    }
 %>
 <style>
     .container {
@@ -99,6 +103,7 @@
 </style>
 <div class="container mt-3">
     <h2>Tableau de Vols</h2>
+    <p style="color: red"><%=message%></p>
     <div class="table-responsive">
         <table>
             <thead>
