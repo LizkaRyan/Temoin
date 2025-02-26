@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="mg.itu.temoin.entity.avion.TypeSiege" %>
-<%@ page import="mg.itu.temoin.dto.ReservationDTO" %>
+<%@ page import="mg.itu.ticketing.entity.avion.TypeSiege" %>
+<%@ page import="mg.itu.ticketing.dto.ReservationDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -14,7 +14,7 @@
         messages = new ArrayList<String>();
     }
 %>
-<form action="/Temoin/reservation" method="post" enctype="multipart/form-data">
+<form action="/Ticketing/reservation" method="post" enctype="multipart/form-data">
     <div class="login-container">
         <div class="login-box">
             <h1>Insertion réservation</h1>
