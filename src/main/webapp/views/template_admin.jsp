@@ -17,10 +17,8 @@
     <div class="nav-links">
         <a href="/Ticketing">Accueil</a>
         <a href="/Ticketing/vol/form">Insertion vol</a>
-        <a href="#">Liste Vol</a>
-        <a href="#">Réservation</a>
-        <a href="#">Annulation réservation</a>
-        <a href="#">Mes réservations</a>
+        <a href="/Ticketing/vol">Liste Vol</a>
+        <a href="/Ticketing/reservation">Mes réservations</a>
     </div>
 </nav>
 <jsp:include page="<%=body%>"/>

@@ -8,6 +8,7 @@ import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.type.Controller;
 import mg.itu.prom16.winter.authentication.Authenticate;
 import mg.itu.prom16.winter.validation.generic.annotation.IfNotValidated;
+import mg.itu.ticketing.authentication.AdminAuthentication;
 import mg.itu.ticketing.controller.Dispatcher;
 import mg.itu.ticketing.dto.VolDTO;
 import mg.itu.ticketing.dto.VolMultiCritere;
@@ -17,7 +18,7 @@ import mg.itu.ticketing.repository.vol.VolRepository;
 import java.util.Map;
 
 @Controller(mapping = "/vol")
-//@Authenticate(AdminAuthentication.class)
+@Authenticate(AdminAuthentication.class)
 public class VolController {
 
     private final Session session;
@@ -46,12 +47,17 @@ public class VolController {
     @Get
     @Authenticate
     public ModelAndView list(@Param(name = "vol")VolMultiCritere vol){
+        Utilisateur utilisateur=((Utilisateur)session.get("utilisateur"));
+        boolean isAdmin=false;
+        if(utilisateur!=null){
+            isAdmin=utilisateur.getRole().getRole().equals("Admin");
+        }
         return new Dispatcher("vol/index",session).addObject("vols",volRepository.findByCriteria(vol))
                 .addObject("villes",volRepository.getVilleRepository().findAll())
                 .addObject("dateMin",vol.getDateTimeMin())
                 .addObject("dateMax",vol.getDateTimeMax())
                 .addObject("idVille",vol.getIdVille())
-                .addObject("isAdmin",((Utilisateur)session.get("utilisateur")).getRole().getRole().equals("Admin"));
+                .addObject("isAdmin",isAdmin);
     }
 
     @Post
