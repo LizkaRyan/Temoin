@@ -11,6 +11,7 @@ import mg.itu.prom16.winter.validation.generic.annotation.IfNotValidated;
 import mg.itu.ticketing.controller.Dispatcher;
 import mg.itu.ticketing.dto.VolDTO;
 import mg.itu.ticketing.dto.VolMultiCritere;
+import mg.itu.ticketing.entity.personnel.Utilisateur;
 import mg.itu.ticketing.repository.vol.VolRepository;
 
 import java.util.Map;
@@ -37,6 +38,11 @@ public class VolController {
         return volRepository.setFormUpdate(new Dispatcher("vol/form",session),idVol);
     }
 
+    @Get("/delete")
+    public String delete(@Param(name = "idVol")String idVol){
+        return volRepository.deleteById(idVol);
+    }
+
     @Get
     @Authenticate
     public ModelAndView list(@Param(name = "vol")VolMultiCritere vol){
@@ -44,7 +50,8 @@ public class VolController {
                 .addObject("villes",volRepository.getVilleRepository().findAll())
                 .addObject("dateMin",vol.getDateTimeMin())
                 .addObject("dateMax",vol.getDateTimeMax())
-                .addObject("idVille",vol.getIdVille());
+                .addObject("idVille",vol.getIdVille())
+                .addObject("isAdmin",((Utilisateur)session.get("utilisateur")).getRole().getRole().equals("Admin"));
     }
 
     @Post

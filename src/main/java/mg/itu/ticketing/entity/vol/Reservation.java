@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -35,13 +36,16 @@ public class Reservation {
     @Column(name = "src_photo")
     private String srcPhoto;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "id_type_siege")
     private TypeSiege typeSiege;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "reservation")
+    private List<AnnulationReservation> annulationReservations;
 
     public void setPhotoSrc(Part photo) throws IOException {
         String fileName = Paths.get(photo.getSubmittedFileName()).getFileName().toString();

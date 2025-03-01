@@ -10,6 +10,7 @@
     String idVille=(String)request.getAttribute("idVille");
     LocalDateTime dateMin=(LocalDateTime)request.getAttribute("dateMin");
     LocalDateTime dateMax=(LocalDateTime)request.getAttribute("dateMax");
+    boolean isAdmin=(boolean) request.getAttribute("isAdmin");
 %>
 <style>
     .container {
@@ -127,7 +128,7 @@
                         <%}%>
                     </select>
                 </div>
-                <button type="submit" class="login-button">Inserer</button>
+                <button type="submit" class="login-button">Rechercher</button>
             </form>
         </div>
     </div>
@@ -143,6 +144,10 @@
                 <th>Avion</th>
                 <th>Destination</th>
                 <th>Réservation</th>
+                <% if(isAdmin){ %>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+                <% } %>
             </tr>
             </thead>
             <tbody>
@@ -153,6 +158,10 @@
                 <td><%= vol.getAvion().getAvion() %></td>
                 <td><%= vol.getDestination().getVille() %></td>
                 <td><a href="/Ticketing/reservation/form?idVol=<%= vol.getIdVol() %>">Réserver</a></td>
+                <% if(isAdmin) {%>
+                <td><a href="/Ticketing/vol/form/update?idVol=<%= vol.getIdVol() %>">Modifier</a></td>
+                <td><a href="/Ticketing/vol/delete?idVol=<%= vol.getIdVol() %>">Supprimer</a></td>
+                <% } %>
                 <!--<td><span class="status completed">Terminé</span></td>-->
                 <!--<td><span class="status pending">En attente</span></td>-->
                 <!--<td><span class="status in-progress">En cours</span></td>-->
