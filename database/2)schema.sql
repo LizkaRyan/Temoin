@@ -16,9 +16,11 @@ CREATE TABLE ville
 
 CREATE TABLE type_siege
 (
-    id_type_siege VARCHAR(50) default 'TPS00' || nextval('seq_type_siege'),
-    type_siege    VARCHAR(50) NOT NULL,
-    prix_siege    VARCHAR(50) NOT NULL,
+    id_type_siege      VARCHAR(50) default 'TPS00' || nextval('seq_type_siege'),
+    type_siege         VARCHAR(50)   NOT NULL,
+    prix_siege         VARCHAR(50)   NOT NULL,
+    nb_siege_promotion INTEGER       NOT NULL,
+    promotion          NUMERIC(5, 2) NOT NULL,
     PRIMARY KEY (id_type_siege),
     UNIQUE (type_siege)
 );
@@ -103,6 +105,7 @@ CREATE TABLE annulation_reservation
     date_annulation           TIMESTAMP   NOT NULL,
     id_reservation            VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_annulation_reservation),
+    UNIQUE (id_reservation),
     FOREIGN KEY (id_reservation) REFERENCES reservation (id_reservation)
 );
 
