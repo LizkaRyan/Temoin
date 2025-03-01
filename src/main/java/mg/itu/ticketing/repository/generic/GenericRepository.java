@@ -7,11 +7,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-public class GenericRepository<T,I> {
+public class GenericRepository<T, I> {
 
     private final Class<T> entityClass;
 
-    public GenericRepository(){
+    public GenericRepository() {
         Type superClass = getClass().getGenericSuperclass();
         if (superClass instanceof ParameterizedType) {
             this.entityClass = (Class<T>) ((ParameterizedType) superClass).getActualTypeArguments()[0];
@@ -20,36 +20,34 @@ public class GenericRepository<T,I> {
         }
     }
 
-    protected List<T> findRequest(String jpql,ParameterQuery parameterQuery){
+    protected List<T> findRequest(String jpql, ParameterQuery parameterQuery) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
-        try{
-            return findRequest(jpql,em,parameterQuery);
-        }
-        finally {
-            em.close();
-            emf.close();
-        }
-    }
-
-    protected List<T> findRequest(String jpql){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        EntityManager em=emf.createEntityManager();
         try {
-            return findRequest(jpql, em, typedQuery -> {});
-        }
-        catch (Exception ex){
-            throw ex;
-        }
-        finally {
+            return findRequest(jpql, em, parameterQuery);
+        } finally {
             em.close();
             emf.close();
         }
     }
 
-    protected List<T> findRequest(String jpql,EntityManager em,ParameterQuery parameterQuery)throws RuntimeException{
+    protected List<T> findRequest(String jpql) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+        try {
+            return findRequest(jpql, em, typedQuery -> {
+            });
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
 
-        List<T> models=null;
+    protected List<T> findRequest(String jpql, EntityManager em, ParameterQuery parameterQuery) throws RuntimeException {
+
+        List<T> models = null;
         try {
             // 1. Écrire une requête JPQL
             TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
@@ -64,8 +62,8 @@ public class GenericRepository<T,I> {
         return models;
     }
 
-    protected List<T> findRequest(String jpql,EntityManager em)throws RuntimeException{
-        List<T> models=null;
+    protected List<T> findRequest(String jpql, EntityManager em) throws RuntimeException {
+        List<T> models = null;
         try {
 
             // 3. Écrire une requête JPQL
@@ -87,49 +85,47 @@ public class GenericRepository<T,I> {
         EntityManager em = emf.createEntityManager();
         try {
             // Rechercher l'entité par son ID
-            return findById(id,em);
+            return findById(id, em);
         } finally {
             em.close();
             emf.close();
         }
     }
 
-    protected Optional<T> findById(I id,EntityManager em) {
+    protected Optional<T> findById(I id, EntityManager em) {
         T entity = null;
         entity = em.find(entityClass, id);
         // Retourner l'entité dans un Optional
         return Optional.ofNullable(entity);
     }
 
-    protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery,EntityManager em) {
+    protected Optional<T> findOnlyOne(String jpql, ParameterQuery parameterQuery, EntityManager em) {
         TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
         parameterQuery.setParameter(query);
-        try{
+        try {
             return Optional.ofNullable(query.getSingleResult());
-        }
-        catch (NoResultException ex){
+        } catch (NoResultException ex) {
             return Optional.empty();
         }
     }
 
-    protected Optional<T> findOnlyOne(String jpql,EntityManager em) {
+    protected Optional<T> findOnlyOne(String jpql, EntityManager em) {
         TypedQuery<T> query = em.createQuery(jpql, this.entityClass);
-        try{
+        try {
             return Optional.ofNullable(query.getSingleResult());
-        }
-        catch (NoResultException ex){
+        } catch (NoResultException ex) {
             return Optional.empty();
         }
     }
 
-    protected Optional<T> findOnlyOne(String jpql,ParameterQuery parameterQuery) {
+    protected Optional<T> findOnlyOne(String jpql, ParameterQuery parameterQuery) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
 
         try {
             // Rechercher l'entité par son ID
-            return findOnlyOne(jpql,parameterQuery,em);
+            return findOnlyOne(jpql, parameterQuery, em);
         } finally {
             em.close();
             emf.close();
@@ -143,7 +139,8 @@ public class GenericRepository<T,I> {
 
         try {
             // Rechercher l'entité par son ID
-            return findOnlyOne(jpql,typedQuery -> {},em);
+            return findOnlyOne(jpql, typedQuery -> {
+            }, em);
         } finally {
             em.close();
             emf.close();
@@ -160,7 +157,7 @@ public class GenericRepository<T,I> {
             // Commencer la transaction
             em.getTransaction().begin();
 
-            this.save(entity,em);
+            this.save(entity, em);
 
             // Committer la transaction
             em.getTransaction().commit();
@@ -175,7 +172,24 @@ public class GenericRepository<T,I> {
         }
     }
 
-    public void save(T entity,EntityManager em)throws RuntimeException {
+    public void save(T entity, EntityManager em) throws RuntimeException {
         em.persist(entity);
+    }
+
+    public void delete(T entity) {
+        // Créer l'EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.remove(entity);
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    public void delete(T entity, EntityManager em) {
+        em.remove(entity);
     }
 }

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class VolDTO {
+    private String idVol;
     @Required
     private LocalDateTime dateVol;
     @RangeDouble(min = 0, field = "prixVol")
@@ -22,6 +23,7 @@ public class VolDTO {
 
     public Vol convertIntoDto(Ville destination, Avion avion){
         Vol vol=new Vol();
+        vol.setIdVol(this.idVol);
         vol.setPrixVol(prixVol);
         vol.setDateVol(dateVol);
         vol.setAvion(avion);

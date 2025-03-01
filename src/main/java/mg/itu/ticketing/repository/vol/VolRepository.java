@@ -29,7 +29,12 @@ public class VolRepository extends GenericRepository<Vol,String> {
             // Commencer la transaction
             em.getTransaction().begin();
             Vol vol = volDTO.convertIntoDto(villeRepository.findVilleById(volDTO.getIdVille(), em), avionRepository.findAvionById(volDTO.getIdAvion(), em));
-            this.save(vol, em);
+            if(vol.getIdVol()==null){
+                this.save(vol, em);
+            }
+            else{
+                em.merge(vol);
+            }
             em.getTransaction().commit();
         }
         catch (Exception ex){
@@ -43,7 +48,7 @@ public class VolRepository extends GenericRepository<Vol,String> {
                 emf.close();
             }
         }
-        return "redirect:/Ticketing/vol/form";
+        return "redirect:/Ticketing/vol";
     }
 
     public ModelAndView setForm(ModelAndView modelAndView){
@@ -91,7 +96,27 @@ public class VolRepository extends GenericRepository<Vol,String> {
         try {
             return modelAndView.addObject("villes",villeRepository.findAll(em))
                     .addObject("avions",avionRepository.findAll(em))
-                    .addObject("vol",findVolById(idVol,em));
+                    .addObject("vol",findVolById(idVol,em).turnIntoDTO());
+        }
+        finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    public String deleteById(String idVol){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+        try{
+            Vol vol=this.findVolById(idVol,em);
+            em.getTransaction().begin();
+            this.delete(vol,em);
+            em.getTransaction().commit();
+            return "redirect:/Ticketing/vol";
+        }
+        catch (Exception ex){
+            em.getTransaction().rollback();
+            throw ex;
         }
         finally {
             em.close();

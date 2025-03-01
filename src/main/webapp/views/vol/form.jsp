@@ -3,13 +3,15 @@
 <%@ page import="mg.itu.ticketing.entity.vol.Ville" %>
 <%@ page import="mg.itu.ticketing.dto.VolDTO" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<Avion> avions = (List<Avion>) request.getAttribute("avions");
     List<Ville> villes = (List<Ville>) request.getAttribute("villes");
     List<String> messages = (List<String>) request.getAttribute("error.messages");
-    VolDTO volDTO = new VolDTO();
+    VolDTO volDTO = (VolDTO) request.getAttribute("vol");
+    if(volDTO==null){
+        volDTO=new VolDTO();
+    }
     if (messages != null) {
         volDTO = (VolDTO) request.getAttribute("error.vol");
     }
@@ -58,6 +60,9 @@
                     <%}%>
                 </select>
             </div>
+            <% if(volDTO.getIdVol()!=null){ %>
+                <input type="hidden" value="<%= volDTO.getIdVol() %>" name="vol.idVol">
+            <% } %>
             <button type="submit" class="login-button">Inserer</button>
         </div>
     </div>
