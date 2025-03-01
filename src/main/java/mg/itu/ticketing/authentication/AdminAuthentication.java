@@ -9,16 +9,18 @@ import mg.itu.ticketing.entity.personnel.Utilisateur;
 public class AdminAuthentication implements Authenticator {
 
     private Session session;
+    private String url;
 
-    public AdminAuthentication(Session session){
+    public AdminAuthentication(Session session,String url){
         this.session=session;
+        this.url=url;
     }
 
     @Override
     public void authentificate() throws AuthenticationException {
         Utilisateur utilisateur=(Utilisateur)this.session.get("utilisateur");
-        if(utilisateur==null) throw new AuthenticationException("redirect:/Ticketing/utilisateur/login");
+        if(utilisateur==null) throw new AuthenticationException("redirect:/Ticketing/utilisateur/login?url="+url);
         else if (!utilisateur.getRole().getRole().equals("Admin"))
-            throw new AuthenticationException("redirect:/Ticketing/utilisateur/login");
+            throw new AuthenticationException("redirect:/Ticketing/utilisateur/login?url="+url);
     }
 }

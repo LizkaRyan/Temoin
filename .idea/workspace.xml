@@ -10,12 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0747d3b4-8916-49c3-84ce-4154f4bb0a0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/2)schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/2)schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/schema.lo1" beforeDir="false" afterPath="$PROJECT_DIR$/database/schema.lo1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/schema.loo" beforeDir="false" afterPath="$PROJECT_DIR$/database/schema.loo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/avion/TypeSiege.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/entity/avion/TypeSiege.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/vol/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/authentication/AdminAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/authentication/AdminAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/authentication/ConnectedAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/authentication/ConnectedAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/personnel/UtilisateurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/personnel/UtilisateurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/AnnulationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/AnnulationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/ParametreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/ParametreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/VolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/controller/vol/VolController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/personnel/UtilisateurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mg/itu/ticketing/repository/personnel/UtilisateurRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/utilisateur/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/utilisateur/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,17 +59,21 @@
     </option>
   </component>
   <component name="ProjectId" id="2taSBw25vEQgkoRBZcXOzUU9chz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feat-promotion",
+    "git-widget-placeholder": "feat-navigation",
     "last_opened_file_path": "C:/Users/ryrab/Desktop/Ryan/Etudes/S6/Ticketing/src/main/webapp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -179,12 +194,15 @@
       <workItem from="1740588563244" duration="10946000" />
       <workItem from="1740640416905" duration="2675000" />
       <workItem from="1740743957179" duration="1172000" />
-      <workItem from="1740802725226" duration="5501000" />
+      <workItem from="1740802725226" duration="9884000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

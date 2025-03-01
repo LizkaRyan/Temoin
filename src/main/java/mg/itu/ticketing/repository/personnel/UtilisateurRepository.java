@@ -13,11 +13,17 @@ public class UtilisateurRepository extends GenericRepository<Utilisateur,String>
         }).orElseThrow(()->new RuntimeException("Email non retrouve"));
     }
 
-    public String login(Session session, LoginDTO loginDTO){
+    public String login(Session session, LoginDTO loginDTO,String url){
         Utilisateur utilisateur=findByEmail(loginDTO.getEmail());
         if(utilisateur.getPassword().equals(loginDTO.getPassword())){
             session.add("utilisateur",utilisateur);
+            if(url!=null){
+                return "redirect:/Ticketing/"+url;
+            }
             return "redirect:/Ticketing";
+        }
+        if(url!=null){
+            return "redirect:/Ticketing/utilisateur/login?url="+url;
         }
         return "redirect:/Ticketing/utilisateur/login";
     }

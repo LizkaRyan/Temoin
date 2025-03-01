@@ -21,12 +21,12 @@ public class UtilisateurController {
     }
 
     @Get("/login")
-    public ModelAndView index(){
-        return new Dispatcher("utilisateur/index",session);
+    public ModelAndView index(@Param(name = "url")String url){
+        return new Dispatcher("utilisateur/index",session).addObject("url",url);
     }
 
     @Post("/login")
-    public String login(@Param(name = "utilisateur")LoginDTO loginDTO){
-        return utilisateurRepository.login(this.session,loginDTO);
+    public String login(@Param(name = "utilisateur")LoginDTO loginDTO,@Param(name = "url")String url){
+        return utilisateurRepository.login(this.session,loginDTO,url);
     }
 }
