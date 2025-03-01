@@ -29,7 +29,7 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
             emf= Persistence.createEntityManagerFactory("my-persistence-unit");
             em = emf.createEntityManager();
             Reservation reservation = reservationDTO.turnIntoReservation(volRepository.findVolById(reservationDTO.getIdVol(),em),typeSiegeRepository.findTypeSiegeById(reservationDTO.getIdTypeSiege(), em),utilisateurRepository.findUtilisiateurById(utilisateur.getIdUtilisateur(),em));
-            reservation=setPrixReservation(reservation);
+            reservation=setPrixReservation(reservation,this.findReservationToVol(reservationDTO.getIdVol(), em).size());
             reservation.setPhotoSrc(part);
             em.getTransaction().begin();
             em.persist(reservation);
@@ -49,11 +49,20 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
         return "redirect:/Ticketing/vol";
     }
 
-    public Reservation setPrixReservation(Reservation reservation) {
+    public Reservation setPrixReservation(Reservation reservation,int nthPlace) {
         double prix = reservation.getVol().getPrixVol();
         prix += reservation.getTypeSiege().getPrixSiege();
+        if(nthPlace<reservation.getTypeSiege().getNbSiegePromotion()){
+            prix-=prix*reservation.getTypeSiege().getPromotion()/100;
+        }
         reservation.setPrixReservation(prix);
         return reservation;
+    }
+
+    public List<Reservation> findReservationToVol(String idVol,EntityManager em){
+        return this.findRequest("select r from Reservation r where r.vol.idVol = :idVol",em,typedQuery -> {
+            typedQuery.setParameter("idVol",idVol);
+        });
     }
 
     public Reservation findReservationById(String idReservation,EntityManager em){

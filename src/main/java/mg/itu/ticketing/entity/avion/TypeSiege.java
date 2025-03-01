@@ -19,4 +19,9 @@ public class TypeSiege {
 
     @Column(name = "prix_siege")
     private double prixSiege;
+
+    @Column(name = "nb_siege_promotion")
+    private int nbSiegePromotion;
+
+    private float promotion;
 }
