@@ -16,8 +16,11 @@ CREATE TABLE ville
 
 CREATE TABLE type_siege
 (
-    id_type_siege VARCHAR(50) default 'TPS00' || nextval('seq_type_siege'),
-    type_siege    VARCHAR(50) NOT NULL,
+    id_type_siege      VARCHAR(50) default 'TPS00' || nextval('seq_type_siege'),
+    type_siege         VARCHAR(50)   NOT NULL,
+    prix_siege         VARCHAR(50)   NOT NULL,
+    nb_siege_promotion INTEGER       NOT NULL,
+    promotion          NUMERIC(5, 2) NOT NULL,
     PRIMARY KEY (id_type_siege),
     UNIQUE (type_siege)
 );
@@ -30,24 +33,30 @@ CREATE TABLE role
     UNIQUE (role)
 );
 
-
-CREATE TABLE utilisateur
+CREATE TABLE parametre_reservation
 (
-    id_utilisateur VARCHAR(50) default 'USR00' || nextval('seq_utilisateur'),
-    pseudo         VARCHAR(50)  NOT NULL,
-    email          VARCHAR(50)  NOT NULL,
-    password       VARCHAR(255) NOT NULL,
-    id_role        VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_utilisateur),
-    UNIQUE (email)
+    id_parametre_reservation VARCHAR(50) default 'PRS00' || nextval('seq_parametre_reservation'),
+    heure_avant_vol          INTEGER NOT NULL,
+    date_changement          DATE    NOT NULL,
+    PRIMARY KEY (id_parametre_reservation)
+);
+
+CREATE TABLE parametre_annulation
+(
+    id_parametre_annulation VARCHAR(50) default 'PRA00' || nextval('seq_parametre_annulation'),
+    heure_avant_vol         INTEGER NOT NULL,
+    date_changement         DATE    NOT NULL,
+    PRIMARY KEY (id_parametre_annulation)
 );
 
 CREATE TABLE avion
 (
     id_avion         VARCHAR(50) default 'AVN00' || nextval('seq_avion'),
+    avion            VARCHAR(50) NOT NULL,
     date_fabrication DATE        NOT NULL,
     id_modele        VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_avion),
+    UNIQUE (avion),
     FOREIGN KEY (id_modele) REFERENCES modele (id_modele)
 );
 
@@ -63,13 +72,29 @@ CREATE TABLE vol
     FOREIGN KEY (destination) REFERENCES ville (id_ville)
 );
 
+CREATE TABLE utilisateur
+(
+    id_utilisateur VARCHAR(50) default 'USR00' || nextval('seq_utilisateur'),
+    email          VARCHAR(50)  NOT NULL,
+    pseudo         VARCHAR(50)  NOT NULL,
+    password       VARCHAR(255) NOT NULL,
+    id_role        VARCHAR(50)  NOT NULL,
+    PRIMARY KEY (id_utilisateur),
+    UNIQUE (email),
+    FOREIGN KEY (id_role) REFERENCES role (id_role)
+);
+
 CREATE TABLE reservation
 (
     id_reservation   VARCHAR(50) default 'RSV00' || nextval('seq_reservation'),
-    date_reservation TIMESTAMP   NOT NULL,
-    id_utilisateur   VARCHAR(50) NOT NULL,
-    id_vol           VARCHAR(50) NOT NULL,
+    date_reservation TIMESTAMP      NOT NULL,
+    prix_reservation NUMERIC(15, 2) NOT NULL,
+    src_photo        VARCHAR(255),
+    id_type_siege    VARCHAR(50)    NOT NULL,
+    id_utilisateur   VARCHAR(50)    NOT NULL,
+    id_vol           VARCHAR(50)    NOT NULL,
     PRIMARY KEY (id_reservation),
+    FOREIGN KEY (id_type_siege) REFERENCES type_siege (id_type_siege),
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur),
     FOREIGN KEY (id_vol) REFERENCES vol (id_vol)
 );
@@ -80,6 +105,7 @@ CREATE TABLE annulation_reservation
     date_annulation           TIMESTAMP   NOT NULL,
     id_reservation            VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_annulation_reservation),
+    UNIQUE (id_reservation),
     FOREIGN KEY (id_reservation) REFERENCES reservation (id_reservation)
 );
 
