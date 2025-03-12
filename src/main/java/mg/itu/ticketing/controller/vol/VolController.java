@@ -2,6 +2,7 @@ package mg.itu.ticketing.controller.vol;
 
 import mg.itu.prom16.winter.ModelAndView;
 import mg.itu.prom16.winter.Session;
+import mg.itu.prom16.winter.Validator;
 import mg.itu.prom16.winter.annotation.method.Get;
 import mg.itu.prom16.winter.annotation.method.Post;
 import mg.itu.prom16.winter.annotation.parameter.Param;
@@ -62,7 +63,12 @@ public class VolController {
 
     @Post
     @IfNotValidated(url = "vol/form")
-    public String insert(@Param(name = "vol") VolDTO volDTO, Map<String,Object> map){
+    public Object insert(@Param(name = "vol") VolDTO volDTO, Validator validator){
+        if(!validator.isValid()){
+            Dispatcher dispatcher = new Dispatcher("vol/form",this.session);
+            dispatcher.addObject("vol",volDTO);
+            return validator.setError(dispatcher);
+        }
         return volRepository.save(volDTO);
     }
 }

@@ -28,11 +28,27 @@
             <%}%>
             <div class="input-group">
                 <label>Date du vol</label>
-                <input name="vol.dateVol" type="datetime-local" value="<%= volDTO.getDateVol() %>" required>
+                <input
+                        name="vol.dateVol"
+                        type="datetime-local"
+                        value="<%= volDTO.getDateVol() %>"
+                        required
+                    <% if(request.getAttribute("dateVol")!=null) {%>
+                        style="border-color: red"
+                    <% } %>
+                >
             </div>
             <div class="input-group">
                 <label for="prix">Prix du vol</label>
-                <input name="vol.prixVol" type="number" value="<%= volDTO.getPrixVol() %>" required>
+                <input
+                        name="vol.prixVol"
+                        type="number"
+                        value="<%= volDTO.getPrixVol() %>"
+                        required
+                    <% if(request.getAttribute("prixVol")!=null) {%>
+                        style="border-color: red"
+                    <% } %>
+                >
             </div>
             <div class="input-group">
                 <select name="vol.idVille">
