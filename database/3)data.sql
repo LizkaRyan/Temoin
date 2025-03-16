@@ -16,8 +16,8 @@ insert into ville(ville) values('Paris'),
                                ('Madrid'),
                                ('Rome');
 
-insert into type_siege(type_siege,prix_siege) values('Business',1000),
-                                                    ('Economique',2500);
+insert into type_siege(type_siege,prix_siege,nb_siege_promotion,promotion) values('Business',1000,5,10),
+                                                    ('Economique',2500,5,10);
 
 insert into avion_siege(id_avion,id_type_siege,nombre) values('AVN001','TPS001',10),
                                                              ('AVN001','TPS002',10),
@@ -26,3 +26,8 @@ insert into avion_siege(id_avion,id_type_siege,nombre) values('AVN001','TPS001',
 
 insert into parametre_reservation(heure_avant_vol,date_changement) values(2,'2025-01-01');
 insert into parametre_annulation(heure_avant_vol,date_changement) values(1,'2025-01-01');
+
+insert into tranche_age(tranche_age) values
+                                         ('Enfant'),
+                                         ('Jeune'),
+                                         ('Adulte');

@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import mg.itu.prom16.winter.validation.generic.CustomValidator;
-import mg.itu.prom16.winter.validation.generic.exception.ValidationException;
+import mg.itu.prom16.winter.validation.generic.ValidationException;
 import mg.itu.ticketing.dto.ReservationDTO;
 import mg.itu.ticketing.entity.vol.Vol;
 import mg.itu.ticketing.entity.vol.parametre.ParametreReservation;

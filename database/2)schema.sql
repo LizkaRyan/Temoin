@@ -49,6 +49,13 @@ CREATE TABLE parametre_annulation
     PRIMARY KEY (id_parametre_annulation)
 );
 
+CREATE TABLE tranche_age
+(
+    id_tranche_age VARCHAR(100) default 'TRA00' || nextval('seq_tranche_age'),
+    tranche_age    VARCHAR(50),
+    PRIMARY KEY (id_tranche_age)
+);
+
 CREATE TABLE avion
 (
     id_avion         VARCHAR(50) default 'AVN00' || nextval('seq_avion'),
@@ -82,6 +89,18 @@ CREATE TABLE utilisateur
     PRIMARY KEY (id_utilisateur),
     UNIQUE (email),
     FOREIGN KEY (id_role) REFERENCES role (id_role)
+);
+
+CREATE TABLE tranche_age_promotion
+(
+    id_tranche_age_promotion VARCHAR(100) default 'TRA00' || nextval('seq_tranche_age_promotion'),
+    age_min                  INTEGER        NOT NULL,
+    age_max                  INTEGER        NOT NULL,
+    pourcentage              NUMERIC(15, 2) NOT NULL,
+    date_update              TIMESTAMP,
+    id_tranche_age           VARCHAR(100)   NOT NULL,
+    PRIMARY KEY (id_tranche_age_promotion),
+    FOREIGN KEY (id_tranche_age) REFERENCES tranche_age (id_tranche_age)
 );
 
 CREATE TABLE reservation

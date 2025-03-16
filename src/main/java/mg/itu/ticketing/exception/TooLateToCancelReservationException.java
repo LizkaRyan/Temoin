@@ -1,6 +1,6 @@
 package mg.itu.ticketing.exception;
 
-import mg.itu.prom16.winter.validation.generic.exception.ValidationException;
+import mg.itu.prom16.winter.validation.generic.ValidationException;
 
 public class TooLateToCancelReservationException extends ValidationException {
 
