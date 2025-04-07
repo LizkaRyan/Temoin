@@ -12,8 +12,11 @@
         <class>mg.itu.ticketing.entity.personnel.Utilisateur</class>
         <class>mg.itu.ticketing.entity.personnel.Role</class>
         <class>mg.itu.ticketing.entity.vol.Vol</class>
+        <class>mg.itu.ticketing.entity.vol.Passeport</class>
         <class>mg.itu.ticketing.entity.vol.Ville</class>
         <class>mg.itu.ticketing.entity.vol.Reservation</class>
+        <class>mg.itu.ticketing.entity.vol.parametre.TrancheAge</class>
+        <class>mg.itu.ticketing.entity.vol.parametre.TrancheAgePromotion</class>
         <class>mg.itu.ticketing.entity.vol.parametre.ParametreReservation</class>
         <class>mg.itu.ticketing.entity.vol.parametre.ParametreAnnulation</class>
         <properties>

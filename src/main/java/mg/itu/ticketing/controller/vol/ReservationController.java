@@ -5,7 +5,6 @@ import mg.itu.prom16.winter.Session;
 import mg.itu.prom16.winter.annotation.method.Get;
 import mg.itu.prom16.winter.annotation.method.Post;
 import mg.itu.prom16.winter.annotation.parameter.Param;
-import mg.itu.prom16.winter.annotation.parameter.WinterFile;
 import mg.itu.prom16.winter.annotation.type.Controller;
 import mg.itu.prom16.winter.authentication.Authenticate;
 import mg.itu.ticketing.authentication.ConnectedAuthentication;
@@ -16,9 +15,10 @@ import mg.itu.ticketing.repository.vol.ReservationRepository;
 import mg.itu.ticketing.validation.reservation.ReservationValidation;
 
 import javax.servlet.http.Part;
+import java.util.Map;
 
 @Controller(mapping = "/reservation")
-@Authenticate(ConnectedAuthentication.class)
+//@Authenticate(ConnectedAuthentication.class)
 public class ReservationController {
 
     Session session;
@@ -30,6 +30,7 @@ public class ReservationController {
     @Get("/form")
     public ModelAndView form(@Param(name = "idVol")String idVol){
         return new Dispatcher("reservation/form",session)
+                .addObject("tranchesAge",reservationRepository.getPassePortRepo().getTrancheAgeRepo().findAll())
                 .addObject("typeSieges",reservationRepository.getTypeSiegeRepository().findAll())
                 .addObject("idVol",idVol);
     }
@@ -41,7 +42,7 @@ public class ReservationController {
     }
 
     @Post
-    public String insert(@Param(name = "reservation") @ReservationValidation ReservationDTO reservation, @WinterFile(name = "passeport") Part photo) throws Exception {
-        return reservationRepository.save(reservation,session,photo);
+    public String insert(@Param(name = "reservation") @ReservationValidation ReservationDTO reservation, Map<String,Part> map) throws Exception {
+        return reservationRepository.save(reservation,session);
     }
 }

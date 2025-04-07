@@ -1,8 +1,6 @@
 package mg.itu.ticketing.repository.vol;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 import lombok.Getter;
 import mg.itu.prom16.winter.ModelAndView;
 import mg.itu.ticketing.dto.VolDTO;
@@ -13,6 +11,7 @@ import mg.itu.ticketing.repository.generic.GenericRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 public class VolRepository extends GenericRepository<Vol,String> {
@@ -121,6 +120,16 @@ public class VolRepository extends GenericRepository<Vol,String> {
         finally {
             em.close();
             emf.close();
+        }
+    }
+
+    public Long findNbPassagerByIdVol(String idVol,EntityManager em){
+        TypedQuery<Long> query = em.createQuery("select sum(r.nbPassager) from Reservation r where r.vol.idVol = :idVol", Long.class);
+        query.setParameter("idVol",idVol);
+        try {
+            return Optional.ofNullable(query.getSingleResult()).orElse(0l);
+        } catch (NoResultException ex) {
+            throw ex;
         }
     }
 }

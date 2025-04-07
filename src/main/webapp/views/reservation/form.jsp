@@ -2,9 +2,11 @@
 <%@ page import="mg.itu.ticketing.entity.avion.TypeSiege" %>
 <%@ page import="mg.itu.ticketing.dto.ReservationDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="mg.itu.ticketing.entity.vol.parametre.TrancheAge" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<TypeSiege> typeSieges = (List<TypeSiege>) request.getAttribute("typeSieges");
+    List<TrancheAge> tranchesAges = (List<TrancheAge>) request.getAttribute("tranchesAge");
     String idVol = (String) request.getAttribute("idVol");
     List<String> messages = (List<String>) request.getAttribute("error.messages");
     ReservationDTO reservation = new ReservationDTO();
@@ -28,8 +30,35 @@
             </div>
             <div class="input-group">
                 <label>Photo du passeport</label>
-                <input name="passeport" type="file" required>
+                <input name="reservation.passePortDTOs[0].photo" type="file" required>
             </div>
+
+            <div class="input-group">
+                <select name="reservation.passePortDTOs[0].idTrancheAge">
+                    <% for (TrancheAge trancheAge : tranchesAges) {%>
+                    <option
+                            value="<%= trancheAge.getIdTrancheAge() %>"
+                    ><%= trancheAge.getTrancheAge() %>
+                    </option>
+                    <%}%>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Photo du passeport</label>
+                <input name="reservation.passePortDTOs[1].photo" type="file" required>
+            </div>
+
+            <div class="input-group">
+                <select name="reservation.passePortDTOs[1].idTrancheAge">
+                    <% for (TrancheAge trancheAge : tranchesAges) {%>
+                    <option
+                            value="<%= trancheAge.getIdTrancheAge() %>"
+                    ><%= trancheAge.getTrancheAge() %>
+                    </option>
+                    <%}%>
+                </select>
+            </div>
+
             <div class="input-group">
                 <select name="reservation.typeVol.idTypeSiege">
                     <% for (TypeSiege typeSiege : typeSieges) {%>

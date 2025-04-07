@@ -108,7 +108,7 @@ CREATE TABLE reservation
     id_reservation   VARCHAR(50) default 'RSV00' || nextval('seq_reservation'),
     date_reservation TIMESTAMP      NOT NULL,
     prix_reservation NUMERIC(15, 2) NOT NULL,
-    src_photo        VARCHAR(255),
+    nb_passager      INTEGER        NOT NULL,
     id_type_siege    VARCHAR(50)    NOT NULL,
     id_utilisateur   VARCHAR(50)    NOT NULL,
     id_vol           VARCHAR(50)    NOT NULL,
@@ -125,6 +125,18 @@ CREATE TABLE annulation_reservation
     id_reservation            VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_annulation_reservation),
     UNIQUE (id_reservation),
+    FOREIGN KEY (id_reservation) REFERENCES reservation (id_reservation)
+);
+
+CREATE TABLE passeport
+(
+    id_passeport     VARCHAR(50) default 'PSP00' || nextval('seq_passeport'),
+    src_photo        VARCHAR(255),
+    prix_reservation NUMERIC(15, 2) NOT NULL,
+    id_tranche_age   VARCHAR(100)   NOT NULL,
+    id_reservation   VARCHAR(50)    NOT NULL,
+    PRIMARY KEY (id_passeport),
+    FOREIGN KEY (id_tranche_age) REFERENCES tranche_age (id_tranche_age),
     FOREIGN KEY (id_reservation) REFERENCES reservation (id_reservation)
 );
 

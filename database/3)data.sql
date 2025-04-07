@@ -31,3 +31,7 @@ insert into tranche_age(tranche_age) values
                                          ('Enfant'),
                                          ('Jeune'),
                                          ('Adulte');
+
+insert into tranche_age_promotion(age_min,age_max,pourcentage,date_update,id_tranche_age) values    (0,10,10,'2025-01-01','TRA001'),
+                                                                                                    (10,18,25,'2025-01-01','TRA002'),
+                                                                                                    (19,100,30,'2025-01-01','TRA003');
