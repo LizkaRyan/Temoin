@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,12 +30,12 @@ public class Reservation {
     @Column(name = "prix_reservation")
     private double prixReservation;
 
+    @Column(name = "nb_passager")
+    private Integer nbPassager;
+
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_vol")
     private Vol vol;
-
-    @Column(name = "src_photo")
-    private String srcPhoto;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "id_type_siege")
@@ -45,13 +46,13 @@ public class Reservation {
     private Utilisateur utilisateur;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "reservation")
-    private List<AnnulationReservation> annulationReservations;
+    private List<AnnulationReservation> annulationReservations=new ArrayList<>();
 
-    public void setPhotoSrc(Part photo) throws IOException {
-        String fileName = Paths.get(photo.getSubmittedFileName()).getFileName().toString();
-        // Sauvegarde du fichier
-        String uploadPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Temoin\\public\\images\\"+ UUID.randomUUID().toString()+"." + fileName;
-        Files.copy(photo.getInputStream(), Paths.get(uploadPath));
-        this.srcPhoto=uploadPath;
+    @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH},mappedBy = "reservation")
+    private List<Passeport> passeports=new ArrayList<>();
+
+    public void setPasseports(List<Passeport> passeports){
+        this.passeports=passeports;
+        this.nbPassager = passeports.size();
     }
 }

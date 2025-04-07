@@ -12,7 +12,6 @@ import mg.itu.ticketing.repository.avion.TypeSiegeRepository;
 import mg.itu.ticketing.repository.generic.GenericRepository;
 import mg.itu.ticketing.repository.personnel.UtilisateurRepository;
 
-import javax.servlet.http.Part;
 import java.util.List;
 
 @Getter
@@ -20,8 +19,9 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
     private TypeSiegeRepository typeSiegeRepository=new TypeSiegeRepository();
     private VolRepository volRepository=new VolRepository();
     private UtilisateurRepository utilisateurRepository=new UtilisateurRepository();
+    private PassePortRepo passePortRepo=new PassePortRepo();
 
-    public String save(ReservationDTO reservationDTO, Session session, Part part)throws Exception{
+    public String save(ReservationDTO reservationDTO, Session session)throws Exception{
         Utilisateur utilisateur=(Utilisateur) session.get("utilisateur");
         EntityManagerFactory emf = null;
         EntityManager em = null;
@@ -29,8 +29,7 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
             emf= Persistence.createEntityManagerFactory("my-persistence-unit");
             em = emf.createEntityManager();
             Reservation reservation = reservationDTO.turnIntoReservation(volRepository.findVolById(reservationDTO.getIdVol(),em),typeSiegeRepository.findTypeSiegeById(reservationDTO.getIdTypeSiege(), em),utilisateurRepository.findUtilisiateurById(utilisateur.getIdUtilisateur(),em));
-            reservation=setPrixReservation(reservation,this.findReservationToVol(reservationDTO.getIdVol(), em).size());
-            reservation.setPhotoSrc(part);
+            reservation.setPasseports(passePortRepo.createPassePortByDTO(reservationDTO.getPassePortDTOs(),reservation,em));
             em.getTransaction().begin();
             em.persist(reservation);
             em.getTransaction().commit();
@@ -47,16 +46,6 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
             }
         }
         return "redirect:/Ticketing/vol";
-    }
-
-    public Reservation setPrixReservation(Reservation reservation,int nthPlace) {
-        double prix = reservation.getVol().getPrixVol();
-        prix += reservation.getTypeSiege().getPrixSiege();
-        if(nthPlace<reservation.getTypeSiege().getNbSiegePromotion()){
-            prix-=prix*reservation.getTypeSiege().getPromotion()/100;
-        }
-        reservation.setPrixReservation(prix);
-        return reservation;
     }
 
     public List<Reservation> findReservationToVol(String idVol,EntityManager em){
