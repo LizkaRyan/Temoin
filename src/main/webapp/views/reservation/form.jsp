@@ -29,37 +29,6 @@
                 <input name="reservation.dateReservation" value="<%= reservation.getDateReservation() %>" type="datetime-local" required>
             </div>
             <div class="input-group">
-                <label>Photo du passeport</label>
-                <input name="reservation.passePortDTOs[0].photo" type="file" required>
-            </div>
-
-            <div class="input-group">
-                <select name="reservation.passePortDTOs[0].idTrancheAge">
-                    <% for (TrancheAge trancheAge : tranchesAges) {%>
-                    <option
-                            value="<%= trancheAge.getIdTrancheAge() %>"
-                    ><%= trancheAge.getTrancheAge() %>
-                    </option>
-                    <%}%>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Photo du passeport</label>
-                <input name="reservation.passePortDTOs[1].photo" type="file" required>
-            </div>
-
-            <div class="input-group">
-                <select name="reservation.passePortDTOs[1].idTrancheAge">
-                    <% for (TrancheAge trancheAge : tranchesAges) {%>
-                    <option
-                            value="<%= trancheAge.getIdTrancheAge() %>"
-                    ><%= trancheAge.getTrancheAge() %>
-                    </option>
-                    <%}%>
-                </select>
-            </div>
-
-            <div class="input-group">
                 <select name="reservation.typeVol.idTypeSiege">
                     <% for (TypeSiege typeSiege : typeSieges) {%>
                     <option
@@ -72,8 +41,50 @@
                     <%}%>
                 </select>
             </div>
+
+            <div id="passeport">
+                <div class="input-group">
+                    <label>Photo du passeport</label>
+                    <input name="reservation.passePortDTOs[0].photo" type="file" required>
+                </div>
+
+                <div class="input-group">
+                    <select name="reservation.passePortDTOs[0].idTrancheAge">
+                        <% for (TrancheAge trancheAge : tranchesAges) {%>
+                        <option
+                                value="<%= trancheAge.getIdTrancheAge() %>"
+                        ><%= trancheAge.getTrancheAge() %>
+                        </option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <button type="button" onclick="addPassport()" class="login-button">Ajouter passeport</button>
             <input type="hidden" name="reservation.typeVol.idVol" value="<%= idVol %>">
             <button type="submit" class="login-button">Inserer</button>
         </div>
     </div>
 </form>
+<script>
+    var i=1;
+    function addPassport(){
+        const html=`<div class="input-group">
+                <label>Photo du passeport</label>
+                <input name="reservation.passePortDTOs[`+i+`].photo" type="file" required>
+            </div>
+
+            <div class="input-group">
+                <select name="reservation.passePortDTOs[`+i+`].idTrancheAge">
+                    <% for (TrancheAge trancheAge : tranchesAges) {%>
+                    <option
+                            value="<%= trancheAge.getIdTrancheAge() %>"
+                    ><%= trancheAge.getTrancheAge() %>
+                    </option>
+                    <%}%>
+                </select>
+            </div>`
+        const passeport = document.getElementById("passeport");
+        passeport.innerHTML=passeport.innerHTML+html;
+        i++;
+    }
+</script>
