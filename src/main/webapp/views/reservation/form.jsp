@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mg.itu.ticketing.entity.avion.TypeSiege" %>
-<%@ page import="mg.itu.ticketing.dto.ReservationDTO" %>
+<%@ page import="mg.itu.ticketing.dto.reservation.ReservationDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="mg.itu.ticketing.entity.vol.parametre.TrancheAge" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

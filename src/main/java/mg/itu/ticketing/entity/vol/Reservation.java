@@ -3,6 +3,9 @@ package mg.itu.ticketing.entity.vol;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import mg.itu.ticketing.dto.PassePortDTO;
+import mg.itu.ticketing.dto.reservation.PasseportPdfData;
+import mg.itu.ticketing.dto.reservation.ReservationPdfData;
 import mg.itu.ticketing.entity.avion.TypeSiege;
 import mg.itu.ticketing.entity.personnel.Utilisateur;
 
@@ -54,5 +57,26 @@ public class Reservation {
     public void setPasseports(List<Passeport> passeports){
         this.passeports=passeports;
         this.nbPassager = passeports.size();
+    }
+
+    public ReservationPdfData getPdfData() {
+        ReservationPdfData reservationPdfData = new ReservationPdfData();
+        reservationPdfData.setIdReservation(idReservation);
+        reservationPdfData.setDateReservation(dateReservation);
+        reservationPdfData.setPrixReservation(prixReservation);
+        reservationPdfData.setNbPassager(nbPassager);
+        reservationPdfData.setTypeSiege(typeSiege.getTypeSiege());
+        reservationPdfData.setDestination(vol.getDestination().getVille());
+        reservationPdfData.setDateDepart(vol.getDateVol());
+        reservationPdfData.setPseudo(this.utilisateur.getPseudo());
+        List<PasseportPdfData> passeportPdfDatas = new ArrayList<>();
+        for (Passeport passeport:passeports){
+            PasseportPdfData passeportPdfData = new PasseportPdfData();
+            passeportPdfData.setPrixReservation(passeport.getPrixReservation());
+            passeportPdfData.setTrancheAge(passeport.getTrancheAge().getTrancheAge());
+            passeportPdfDatas.add(passeportPdfData);
+        }
+        reservationPdfData.setPasseportPdfData(passeportPdfDatas);
+        return reservationPdfData;
     }
 }

@@ -3,7 +3,6 @@ package mg.itu.ticketing.entity.vol;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import mg.itu.ticketing.dto.ReservationDTO;
 import mg.itu.ticketing.dto.VolDTO;
 import mg.itu.ticketing.entity.avion.Avion;
 

@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import lombok.Getter;
 import mg.itu.prom16.winter.Session;
-import mg.itu.ticketing.dto.ReservationDTO;
+import mg.itu.ticketing.dto.reservation.ReservationDTO;
 import mg.itu.ticketing.entity.personnel.Utilisateur;
 import mg.itu.ticketing.entity.vol.Reservation;
 import mg.itu.ticketing.repository.avion.TypeSiegeRepository;
@@ -56,6 +56,29 @@ public class ReservationRepository extends GenericRepository<Reservation,String>
 
     public Reservation findReservationById(String idReservation,EntityManager em){
         return super.findById(idReservation,em).orElseThrow(()->new RuntimeException("Id reservation non retrouve"));
+    }
+
+    public Reservation findReservationById(String idReservation){
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        try{
+            emf= Persistence.createEntityManagerFactory("my-persistence-unit");
+            em = emf.createEntityManager();
+            return this.findRequest("select r from Reservation r join fetch r.typeSiege join fetch r.vol v join fetch r.utilisateur join fetch v.destination join fetch r.passeports where r.idReservation = :idReservation",em,typedQuery -> {
+                typedQuery.setParameter("idReservation",idReservation);
+            }).get(0);
+        }
+        catch (Exception ex){
+            throw ex;
+        }
+        finally {
+            if(emf!=null){
+                emf.close();
+            }
+            if(em!=null){
+                em.close();
+            }
+        }
     }
 
     public int getNumberSeatsUnavailable(String idVol,String idTypeSiege,EntityManager em){
