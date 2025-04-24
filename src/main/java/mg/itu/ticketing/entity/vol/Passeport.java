@@ -33,7 +33,7 @@ public class Passeport {
     @JoinColumn(name = "id_reservation")
     private Reservation reservation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tranche_age")
     private TrancheAge trancheAge;
 

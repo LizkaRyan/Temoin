@@ -1,7 +1,9 @@
-package mg.itu.ticketing.dto;
+package mg.itu.ticketing.dto.reservation;
 
 import lombok.Getter;
 import lombok.Setter;
+import mg.itu.ticketing.dto.PassePortDTO;
+import mg.itu.ticketing.dto.TypeVol;
 import mg.itu.ticketing.entity.avion.TypeSiege;
 import mg.itu.ticketing.entity.personnel.Utilisateur;
 import mg.itu.ticketing.entity.vol.Passeport;
