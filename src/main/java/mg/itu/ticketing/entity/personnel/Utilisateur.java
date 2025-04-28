@@ -11,13 +11,13 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(insertable = false,name = "id_utilisateur")
-    private String idUtilisateur;
+    String idUtilisateur;
 
-    private String pseudo;
+    String pseudo;
 
-    private String email;
+    String email;
 
-    private String password;
+    String password;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_role")

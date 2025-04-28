@@ -6,6 +6,8 @@ import mg.itu.ticketing.dto.LoginDTO;
 import mg.itu.ticketing.entity.personnel.Utilisateur;
 import mg.itu.ticketing.repository.generic.GenericRepository;
 
+import java.util.List;
+
 public class UtilisateurRepository extends GenericRepository<Utilisateur,String> {
     public Utilisateur findByEmail(String email){
         return this.findOnlyOne("select u from Utilisateur u where u.email = :email",typedQuery -> {
@@ -30,5 +32,9 @@ public class UtilisateurRepository extends GenericRepository<Utilisateur,String>
 
     public Utilisateur findUtilisiateurById(String idUtilisateur, EntityManager em) {
         return super.findById(idUtilisateur,em).orElseThrow(()->new RuntimeException("idUtilisateur non reconnue"));
+    }
+
+    public List<Utilisateur> findAllUser() {
+        return this.findRequest("select u from Utilisateur u");
     }
 }
