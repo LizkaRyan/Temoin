@@ -6,9 +6,12 @@ import mg.itu.prom16.winter.annotation.method.Get;
 import mg.itu.prom16.winter.annotation.method.Post;
 import mg.itu.prom16.winter.annotation.parameter.Param;
 import mg.itu.prom16.winter.annotation.type.Controller;
+import mg.itu.prom16.winter.download.CsvFile;
 import mg.itu.ticketing.controller.Dispatcher;
 import mg.itu.ticketing.dto.LoginDTO;
 import mg.itu.ticketing.repository.personnel.UtilisateurRepository;
+
+import java.lang.reflect.InvocationTargetException;
 
 @Controller(mapping = "/utilisateur")
 public class UtilisateurController {
@@ -28,5 +31,10 @@ public class UtilisateurController {
     @Post("/login")
     public String login(@Param(name = "utilisateur")LoginDTO loginDTO,@Param(name = "url")String url){
         return utilisateurRepository.login(this.session,loginDTO,url);
+    }
+
+    @Get("/csv")
+    public CsvFile exportCsv() throws InvocationTargetException, IllegalAccessException {
+        return new CsvFile("utilisateur",utilisateurRepository.findAllUser(),",");
     }
 }
